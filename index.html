@@ -11,7 +11,7 @@
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play Tarot.</tw-noscript></noscript></tw-story>
 <tw-storydata name="Tarot" startnode="1" creator="Twine" creator-version="2.12.0" format="Harlowe" format-version="3.3.9" ifid="E35C031F-81C3-44D1-8029-D6D646532F5B" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* Base styles for desktop screens */
 tw-story {
-  background-image: url('https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/tarot-bg.avif');
+  background-image: url('https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/tarot-bg1.avif');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -19,324 +19,1057 @@ tw-story {
 }
 
 tw-passage {
-  background-color: transparent;
-  color: #2b1d0c;
+  background-color: rgba(255, 255, 255, 0.45); /* Lowered from 0.9 to let tarot-bg.avif show through */
+  backdrop-filter: blur(2px); /* Softly blurs the image behind text for contrast without hiding it */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Adds slight depth to separate text panel from background */
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8); /* Adds a subtle light highlight behind dark text */
 }
 
-/* Mobile responsive fixes */
-@media screen and (max-width: 768px) {
-  tw-story {
-    background-attachment: scroll;
-    background-size: cover; /* Keeps image covering the full screen height */
-    background-position: center center; /* Keeps the focus centered */
-  }
-  
-  tw-passage {
-    padding: 15px;
-    width: 90%;
-    margin: 0 auto;
+/* Master layout wrappers */
+.card-wrapper {
+  text-align: left;
+}
+
+.card-header {
+  font-size: 1.5em;
+  margin-bottom: 0px;
+}
+
+/* Flexbox side-by-side arrangement */
+.card-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 0px;
+}
+
+/* Column 1: Image Sizing */
+.card-layout img,
+.card-img {
+  width: 200px !important;
+  max-width: 200px !important;
+  height: auto !important;
+  display: block !important;
+  border-radius: 8px;
+  margin: 0 !important;
+  flex-shrink: 0;
+}
+
+/* Rotation logic for reversed cards */
+.reversed-card img {
+  transform: rotate(180deg) !important;
+}
+
+/* Column 2: Text Styling */
+.card-details {
+  flex: 1;
+}
+
+.card-details h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+.card-details p {
+  line-height: 1.6;
+  font-size: 0.9em;
+}
+
+/* Mobile responsive fallback */
+@media screen and (max-width: 600px) {
+  .card-layout {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">let favicon = document.createElement('link');
 favicon.rel = 'icon';
 favicon.type = 'image/avif';
 favicon.href = 'https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/tarotback.avif';
-document.head.appendChild(favicon);</script><tw-passagedata pid="1" name="Home" tags="" position="700,200" size="100,100">(align:&quot;=&gt;&lt;=&quot;)[(text-size:3)[Tarot]
-(text-size:0.9)[//(text-colour:gray)[Your story, laid bare.]//]
+document.head.appendChild(favicon);</script><tw-passagedata pid="1" name="Home" tags="" position="1100,200" size="100,100">&lt;style&gt;
+  tw-passage {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    font-family: &#39;Cinzel&#39;, &#39;Georgia&#39;, serif;
+    color: #ffffff;
+    text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9), 0px 0px 12px rgba(0, 0, 0, 0.8);
+  }
+
+  /* Title glow */
+  .title-text {
+    color: #fff8e7;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 0 2px 10px #000;
+  }
+
+  /* Subtitle gold color */
+  .subtitle-text {
+    color: #f3e5ab;
+    font-style: italic;
+    letter-spacing: 1px;
+  }
+
+  /* Custom Link Colors */
+  tw-link {
+    color: #ffe082 !important;
+    font-weight: bold;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+  }
+
+  tw-link:hover {
+    color: #ffffff !important;
+    text-shadow: 0 0 10px rgba(255, 224, 130, 0.8), 0 2px 6px #000;
+  }
+&lt;/style&gt;
+
+(align:&quot;=&gt;&lt;=&quot;)[(text-size:3)[&lt;span class=&quot;title-text&quot;&gt;Tarot&lt;/span&gt;]
+(text-size:0.9)[&lt;span class=&quot;subtitle-text&quot;&gt;Your story, laid bare.&lt;/span&gt;]
 
 
+[[Start]] 
+[[Credits]]]</tw-passagedata><tw-passagedata pid="2" name="Start" tags="" position="1100,400" size="100,100">&lt;style&gt;
+  tw-passage {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    font-family: &#39;Cinzel&#39;, &#39;Georgia&#39;, serif;
+    color: #ffffff;
+  }
+
+  /* Subtitle gold color &amp; text shadow */
+  .prompt-text {
+    color: #f3e5ab;
+    font-style: italic;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 0 12px rgba(0, 0, 0, 0.8);
+  }
+
+  /* Custom Link Styling */
+  tw-link {
+    color: #ffe082 !important;
+    font-weight: bold;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+  }
+
+  tw-link:hover {
+    color: #ffffff !important;
+    text-shadow: 0 0 10px rgba(255, 224, 130, 0.8), 0 2px 6px #000;
+  }
+&lt;/style&gt;
+
+(align:&quot;=&gt;&lt;=&quot;)[&lt;span class=&quot;prompt-text&quot;&gt;Pick your fate:&lt;/span&gt;
 
 
+[[Draw a Card|Draw Card]] 
+[[3-Card Spread]] 
+[[Main Menu|Home]]]</tw-passagedata><tw-passagedata pid="3" name="Credits" tags="" position="1350,200" size="100,100">&lt;style&gt;
+  tw-passage {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    font-family: &#39;Cinzel&#39;, &#39;Georgia&#39;, serif;
+    color: #e0e0e0;
+  }
 
-[[New Game|Start]]
-[[Credits]]
-]</tw-passagedata><tw-passagedata pid="2" name="The Fool" tags="" position="200,500" size="100,100">You are:
+  /* Header Glow */
+  .credits-title {
+    color: #fff8e7;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 0 2px 10px #000;
+  }
 
-&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  /* Section Labels - Tightened Spacing */
+  .credits-label {
+    display: block;
+    color: #f3e5ab;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    margin-top: 14px; /* Reduced gap before new sections */
+    margin-bottom: 2px; /* Tightened space above the value */
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+  }
+
+  /* Content Text &amp; HTML Links */
+  .credits-body {
+    display: block;
+    color: #ffffff;
+    font-size: 0.95em;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+  }
+
+  .credits-body a {
+    color: #ffe082 !important;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+  }
+
+  .credits-body a:hover {
+    color: #ffffff !important;
+    text-shadow: 0 0 8px rgba(255, 224, 130, 0.8);
+  }
+
+  /* Twine Return Link */
+  tw-link {
+    color: #ffe082 !important;
+    font-weight: bold;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+    transition: color 0.2s ease;
+  }
+
+  tw-link:hover {
+    color: #ffffff !important;
+    text-shadow: 0 0 10px rgba(255, 224, 130, 0.8);
+  }
+&lt;/style&gt;
+
+(align:&quot;=&gt;&lt;=&quot;)[(text-size:2)[&lt;span class=&quot;credits-title&quot;&gt;Credits&lt;/span&gt;]
+
+&lt;span class=&quot;credits-label&quot;&gt;Story &amp; Design&lt;/span&gt;&lt;span class=&quot;credits-body&quot;&gt;Lolomo&lt;/span&gt;
+&lt;span class=&quot;credits-label&quot;&gt;Card Artwork&lt;/span&gt;&lt;span class=&quot;credits-body&quot;&gt;&lt;a href=&quot;https://pixabay.com&quot; target=&quot;_blank&quot;&gt;Pixabay&lt;/a&gt; &amp;bull; &lt;a href=&quot;https://magnific.com&quot; target=&quot;_blank&quot;&gt;Magnific&lt;/a&gt;&lt;/span&gt;
+&lt;span class=&quot;credits-label&quot;&gt;Engine &amp; Hosting&lt;/span&gt;&lt;span class=&quot;credits-body&quot;&gt;Twine (Harlowe) &amp;bull; GitHub Pages&lt;/span&gt;
+&lt;span class=&quot;credits-label&quot;&gt;Special Thanks&lt;/span&gt;&lt;span class=&quot;credits-body&quot;&gt;Me — I&#39;m so proud of myself.&lt;/span&gt;
+
+---
+(text-size:0.85)[&lt;span style=&quot;display:inline-block; margin-top: 5px;&quot;&gt;[[Back|Home]]&lt;/span&gt;]]</tw-passagedata><tw-passagedata pid="4" name="The Fool Upright" tags="" position="175,800" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
   &lt;div&gt;
-    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Fool.avif&#39; width=&#39;200&#39;&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Fool.avif&#39; width=&#39;200&#39; alt=&quot;The Fool Upright&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The Fool&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: New beginnings, innocence, spontaneity, leap of faith.&lt;br&gt;Description: Represents pure potential and uninhibited optimism. Upright, it signifies taking a leap into the unknown with faith in the universe, unburdened by fear or past conditioning.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="5" name="The Magician Upright" tags="" position="325,800" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Magician.avif&#39; width=&#39;200&#39; alt=&quot;The Magician Upright&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The Magician&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Manifestation, resourcefulness, power, inspired action.&lt;br&gt;Description: Harnesses all elements to channel vision into reality. Upright, it shows you possess every tool and resource required to accomplish your highest intentions.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="6" name="The High Priestess Upright" tags="" position="475,800" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-High-Priestess.avif&#39; width=&#39;200&#39; alt=&quot;The High Priestess Upright&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The High Priestess&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Intuition, sacred knowledge, divine feminine, subconscious.&lt;br&gt;Description: Sits at the threshold of the hidden realms. Upright, she urges you to turn inward, trust your subtle instincts, and uncover deeper spiritual truths.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="7" name="The Empress Upright" tags="" position="625,800" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Empress.avif&#39; width=&#39;200&#39; alt=&quot;The Empress Upright&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The Empress&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Abundance, fertility, nature, nurturing, elegance.&lt;br&gt;Description: Embodies ultimate creation, warmth, and earthly richness. Upright, she signals a flourishing period of artistic creation, comfort, and fruitful rewards.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="8" name="The Emperor Upright" tags="" position="775,800" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Emperor.avif&#39; width=&#39;200&#39; alt=&quot;The Emperor Upright&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The Emperor&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Authority, structure, leadership, stability, order.&lt;br&gt;Description: Represents protective boundaries and grounded discipline. Upright, he calls on you to step into leadership, construct solid plans, and master your domain.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="9" name="The Lovers Upright" tags="" position="175,1075" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Lovers.avif&#39; width=&#39;200&#39; alt=&quot;The Lovers Upright&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The Lovers&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Harmony, partnership, core values, crucial choices.&lt;br&gt;Description: Reflects deep connection and personal alignment. Upright, it speaks of union, mutual respect, and making decisions that closely match your core moral code.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="10" name="The Hierophant Upright" tags="" position="925,800" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Hierophant.avif&#39; width=&#39;200&#39; alt=&quot;The Hierophant Upright&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The Hierophant&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Tradition, wisdom, spiritual guidance, conformity.&lt;br&gt;Description: Bridges sacred knowledge and established institutions. Upright, it encourages learning through mentorship, honoring tradition, or working within established frameworks.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="11" name="The Chariot Upright" tags="" position="325,1075" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Chariot.avif&#39; width=&#39;200&#39; alt=&quot;The Chariot Upright&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The Chariot&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Determination, willpower, ambition, triumph over friction.&lt;br&gt;Description: Drives opposing forces toward a single victorious path. Upright, it promises success if you maintain sharp focus, discipline, and absolute resolve.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="12" name="Strength Upright" tags="" position="475,1075" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Strength.avif&#39; width=&#39;200&#39; alt=&quot;Strength Upright&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;Strength&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Courage, compassion, gentle mastery, emotional endurance.&lt;br&gt;Description: Tames wild power with calm patience rather than brute force. Upright, it reminds you that true influence stems from quiet composure and soft resilience.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="13" name="The Hermit Upright" tags="" position="625,1075" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Hermit.avif&#39; width=&#39;200&#39; alt=&quot;The Hermit Upright&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The Hermit&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Introspection, soul-searching, inner guidance, quiet retreat.&lt;br&gt;Description: Shines a lantern into the dark to illuminate the soul. Upright, it asks you to step back from worldly noise to seek truth within your own inner wisdom.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="14" name="Wheel of Fortune Upright" tags="" position="775,1075" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Wheel-of-Fortune.avif&#39; width=&#39;200&#39; alt=&quot;Wheel of Fortune Upright&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;Wheel of Fortune&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Fate, life cycles, decisive shifts, momentum, destiny.&lt;br&gt;Description: Spins the eternal cycles of change and opportunity. Upright, it signals a positive turning point, good fortune, and the evolution of circumstances.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="15" name="Justice Upright" tags="" position="925,1075" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Justice.avif&#39; width=&#39;200&#39; alt=&quot;Justice Upright&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;Justice&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Fairness, truth, cause and effect, legal matters, accountability.&lt;br&gt;Description: Holds the scales of balance with unyielding clarity. Upright, it signifies clear moral judgment, fair outcomes, and owning the consequences of past actions.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="16" name="The Hanged Man Upright" tags="" position="175,1350" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Hanged-Man.avif&#39; width=&#39;200&#39; alt=&quot;The Hanged Man Upright&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The Hanged Man&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Surrender, new perspectives, strategic pause, enlightenment.&lt;br&gt;Description: Hangs peacefully to gain a radical change of view. Upright, it suggests letting go of ego control, pausing action, and seeing your world from a fresh angle.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="17" name="Death Upright" tags="" position="325,1350" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Death.avif&#39; width=&#39;200&#39; alt=&quot;Death Upright&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;Death&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Endings, profound transformation, clearing space, rebirth.&lt;br&gt;Description: Sweeps away outdated structures to allow new life to sprout. Upright, it heralds necessary closure, profound personal evolution, and fresh starts.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="18" name="Temperance Upright" tags="" position="475,1350" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Temperance.avif&#39; width=&#39;200&#39; alt=&quot;Temperance Upright&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;Temperance&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Balance, patience, moderation, alchemy, emotional peace.&lt;br&gt;Description: Blends opposing elements into fluid harmony. Upright, it encourages taking the middle path, practicing composure, and synthesizing disparate life forces.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="19" name="The Devil Upright" tags="" position="625,1350" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Devil.avif&#39; width=&#39;200&#39; alt=&quot;The Devil Upright&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The Devil&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Attachment, illusion, materialism, shadow self, self-limitation.&lt;br&gt;Description: Exposes the bonds of illusion and self-imposed traps. Upright, it highlights unhelpful habits, unhealthy dependencies, or limiting beliefs requiring awareness.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="20" name="The Tower Upright" tags="" position="775,1350" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Tower.avif&#39; width=&#39;200&#39; alt=&quot;The Tower Upright&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The Tower&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Sudden upheaval, breakthrough, dismantling illusions, awakening.&lt;br&gt;Description: Shatters false structures to expose absolute foundation. Upright, it brings swift, shocking clarity that dismantles stable yet false illusions.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="21" name="The Star Upright" tags="" position="925,1350" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Star.avif&#39; width=&#39;200&#39; alt=&quot;The Star Upright&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The Star&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Hope, inspiration, spiritual healing, serenity, renewed faith.&lt;br&gt;Description: Pours calm, pure light following the storm of upheaval. Upright, it brings peace, deep emotional recovery, and unwavering faith in what lies ahead.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="22" name="The Moon Upright" tags="" position="325,1625" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Moon.avif&#39; width=&#39;200&#39; alt=&quot;The Moon Upright&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The Moon&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Illusions, dreams, the subconscious, mystery, raw intuition.&lt;br&gt;Description: Casts subtle light across shadowy, uncertain terrain. Upright, it asks you to navigate ambiguity, face subconscious anxieties, and rely on raw intuition.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="23" name="The Sun Upright" tags="" position="475,1625" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Sun.avif&#39; width=&#39;200&#39; alt=&quot;The Sun Upright&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The Sun&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Vitality, joy, warmth, absolute clarity, celebration.&lt;br&gt;Description: Radiates boundless energy, illumination, and raw happiness. Upright, it guarantees success, radiant confidence, and transparent truth across all endeavors.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="24" name="Judgement Upright" tags="" position="625,1625" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Judgement.avif&#39; width=&#39;200&#39; alt=&quot;Judgement Upright&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;Judgement&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Calling, self-evaluation, forgiveness, spiritual awakening.&lt;br&gt;Description: Sounds the horn of ultimate reckoning and awakening. Upright, it urges you to rise to a higher purpose, forgive past errors, and accept true self-realization.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="25" name="The World Upright" tags="" position="775,1625" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-World.avif&#39; width=&#39;200&#39; alt=&quot;The World Upright&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The World&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Completion, wholeness, fulfillment, travel, closing cycles.&lt;br&gt;Description: Marks the victorious end of a major journey. Upright, it celebrates absolute achievement, global consciousness, and entering a brand-new cycle with grace.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="26" name="The Fool Upright Spread" tags="" position="1275,800" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Fool.avif&#39; width=&#39;200&#39; alt=&quot;The Fool Upright&quot;&gt;
   &lt;/div&gt;
   &lt;div&gt;
     &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Fool&lt;/h4&gt;
     &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;New beginnings, innocence, spontaneous choices. Step off a cliff into the unknown with ultimate trust.&lt;/p&gt;
   &lt;/div&gt;
-&lt;/div&gt;
-
-(align:&quot;=&gt;&lt;=&quot;)[(text-size:0.9)[[[Pick again|Start]]]]</tw-passagedata><tw-passagedata pid="3" name="Start" tags="" position="700,350" size="100,100">
-(align:&quot;=&gt;&lt;=&quot;)[Pick your fate:
-
-(link: &quot;Draw a Random Card&quot;)[
-  (goto: (either: &quot;The Empress&quot;, &quot;The Fool&quot;, &quot;The Magician&quot;,&quot;The High Priestess&quot;,&quot;The Emperor&quot;,&quot;The Hierophant&quot;,&quot;The Lovers&quot;,&quot;The Chariot&quot;,&quot;Strength&quot;,&quot;The Hermit&quot;,&quot;The Hanged Man&quot;,&quot;The Devil&quot;,&quot;Wheel of Fortune&quot;,&quot;Justice&quot;,&quot;Death&quot;,&quot;Temperance&quot;,&quot;The Tower&quot;,&quot;The Star&quot;,&quot;The Moon&quot;,&quot;The Sun&quot;,&quot;Judgement&quot;))
-]
-[[Home]]]</tw-passagedata><tw-passagedata pid="4" name="The Empress" tags="" position="800,500" size="100,100">You are:
-
-&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="27" name="The Fool Reversed Spread" tags="" position="1275,925" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
   &lt;div&gt;
-    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Empress.avif&#39; width=&#39;200&#39;&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Fool.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The Fool Reversed&quot;&gt;
   &lt;/div&gt;
   &lt;div&gt;
-    &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Empress&lt;/h4&gt;
-    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Abundance, nurture, creation. Fruitful growth and sensory connection to nature.&lt;/p&gt;
+    &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Fool (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Recklessness, risk-taking, hesitation. Jumping without thinking or fear of taking a necessary leap.&lt;/p&gt;
   &lt;/div&gt;
-&lt;/div&gt;
-
-(align:&quot;=&gt;&lt;=&quot;)[(text-size:0.9)[[[Pick again|Start]]]]</tw-passagedata><tw-passagedata pid="5" name="The Magician" tags="" position="400,500" size="100,100">You are:
-
-&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="28" name="The Magician Upright Spread" tags="" position="1425,800" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
   &lt;div&gt;
-    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Magician.avif&#39; width=&#39;200&#39;&gt;
+    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Magician.avif&#39; width=&#39;200&#39; alt=&quot;The Magician Upright&quot;&gt;
   &lt;/div&gt;
   &lt;div&gt;
     &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Magician&lt;/h4&gt;
-    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Manifestation, resourcefulness, power. Everything you need to succeed is on the table before you.&lt;/p&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Manifestation, resourcefulness, power. You have all the tools needed to turn inspiration into reality.&lt;/p&gt;
   &lt;/div&gt;
-&lt;/div&gt;
-
-(align:&quot;=&gt;&lt;=&quot;)[(text-size:0.9)[[[Pick again|Start]]]]</tw-passagedata><tw-passagedata pid="6" name="The High Priestess" tags="" position="600,500" size="100,100">You are:
-
-&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="29" name="The Magician Reversed Spread" tags="" position="1425,925" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
   &lt;div&gt;
-    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-High-Priestess.avif&#39; width=&#39;200&#39;&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Magician.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The Magician Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Magician (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Manipulation, unused talent, illusion. Watch out for misdirected energy or self-doubt stalling your plans.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="30" name="The High Priestess Reversed Spread" tags="" position="1575,925" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-High-Priestess.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The High Priestess Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The High Priestess (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Secrets, disconnected intuition, superficiality. You may be ignoring your inner gut feeling.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="31" name="The High Priestess Upright Spread" tags="" position="1575,800" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-High-Priestess.avif&#39; width=&#39;200&#39; alt=&quot;The High Priestess Upright&quot;&gt;
   &lt;/div&gt;
   &lt;div&gt;
     &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The High Priestess&lt;/h4&gt;
-    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Intuition, mystery, subconscious mind. Trust the quiet voice behind the veil.&lt;/p&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Intuition, sacred knowledge, divine feminine. Listen to your inner voice and trust the mystery.&lt;/p&gt;
   &lt;/div&gt;
-&lt;/div&gt;
-
-(align:&quot;=&gt;&lt;=&quot;)[(text-size:0.9)[[[Pick again|Start]]]]</tw-passagedata><tw-passagedata pid="7" name="The Emperor" tags="" position="1000,500" size="100,100">You are:
-
-&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="32" name="The Empress Upright Spread" tags="" position="1725,800" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
   &lt;div&gt;
-    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Emperor.avif&#39; width=&#39;200&#39;&gt;
+    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Empress.avif&#39; width=&#39;200&#39; alt=&quot;The Empress Upright&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Empress&lt;/h4&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Femininity, beauty, nature, abundance. Nurture your creative seeds and embrace comfort.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="33" name="The Empress Reversed Spread" tags="" position="1725,925" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Empress.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The Empress Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Empress (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Creative block, dependence, smothering. Refocus on self-care and reconnect with your personal growth.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="34" name="The Emperor Reversed Spread" tags="" position="1875,925" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Emperor.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The Emperor Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Emperor (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Tyranny, rigidity, lack of discipline. Either flexibility is needed or control has turned overly domineering.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="35" name="The Emperor Upright Spread" tags="" position="1875,800" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Emperor.avif&#39; width=&#39;200&#39; alt=&quot;The Emperor Upright&quot;&gt;
   &lt;/div&gt;
   &lt;div&gt;
     &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Emperor&lt;/h4&gt;
-    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Structure, authority, stability. Order built through experience, boundary, and rule.&lt;/p&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Authority, structure, stability, control. Create order through discipline and firm leadership.&lt;/p&gt;
   &lt;/div&gt;
-&lt;/div&gt;
-
-(align:&quot;=&gt;&lt;=&quot;)[(text-size:0.9)[[[Pick again|Start]]]]</tw-passagedata><tw-passagedata pid="8" name="The Hierophant" tags="" position="1200,500" size="100,100">You are:
-
-&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="36" name="The Hierophant Upright Spread" tags="" position="2025,800" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
   &lt;div&gt;
-    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Hierophant.avif&#39; width=&#39;200&#39;&gt;
+    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Hierophant.avif&#39; width=&#39;200&#39; alt=&quot;The Hierophant Upright&quot;&gt;
   &lt;/div&gt;
   &lt;div&gt;
     &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Hierophant&lt;/h4&gt;
-    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Tradition, belief systems, spiritual wisdom. Following established paths, mentors, or shared beliefs.&lt;/p&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Spiritual wisdom, tradition, institutions. Seek guidance from proven systems or spiritual mentors.&lt;/p&gt;
   &lt;/div&gt;
-&lt;/div&gt;
-
-(align:&quot;=&gt;&lt;=&quot;)[(text-size:0.9)[[[Pick again|Start]]]]</tw-passagedata><tw-passagedata pid="9" name="The Lovers" tags="" position="200,700" size="100,100">You are:
-
-&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="37" name="The Hierophant Reversed Spread" tags="" position="2025,925" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
   &lt;div&gt;
-    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Lovers.avif&#39; width=&#39;200&#39;&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Hierophant.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The Hierophant Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Hierophant (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Rebellion, unconventionality, new belief systems. Questioning traditional norms and writing your own rules.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="38" name="The Lovers Upright Spread" tags="" position="1275,1075" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Lovers.avif&#39; width=&#39;200&#39; alt=&quot;The Lovers Upright&quot;&gt;
   &lt;/div&gt;
   &lt;div&gt;
     &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Lovers&lt;/h4&gt;
-    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Harmony, choice, alignment. A crucial crossroad of core values and deep connections.&lt;/p&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Love, harmony, partnerships, choices. Align your personal values to make meaningful decisions.&lt;/p&gt;
   &lt;/div&gt;
-&lt;/div&gt;
-
-(align:&quot;=&gt;&lt;=&quot;)[(text-size:0.9)[[[Pick again|Start]]]]</tw-passagedata><tw-passagedata pid="10" name="The Chariot" tags="" position="400,700" size="100,100">You are:
-
-&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="39" name="The Lovers Reversed Spread" tags="" position="1275,1200" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
   &lt;div&gt;
-    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Chariot.avif&#39; width=&#39;200&#39;&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Lovers.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The Lovers Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Lovers (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Disharmony, misalignment of values, bad choices. Realign with what truly matters before committing further.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="40" name="The Chariot Reversed Spread" tags="" position="1425,1200" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Chariot.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The Chariot Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Chariot (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Lack of direction, loss of control, aggression. Take a pause to regain your steering before pushing ahead.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="41" name="The Chariot Upright Spread" tags="" position="1425,1075" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Chariot.avif&#39; width=&#39;200&#39; alt=&quot;The Chariot Upright&quot;&gt;
   &lt;/div&gt;
   &lt;div&gt;
     &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Chariot&lt;/h4&gt;
-    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Willpower, determination, control. Steering opposing forces toward a single goal through sheer focus.&lt;/p&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Control, willpower, success, determination. Overcome opposing forces to drive yourself forward.&lt;/p&gt;
   &lt;/div&gt;
-&lt;/div&gt;
-
-(align:&quot;=&gt;&lt;=&quot;)[(text-size:0.9)[[[Pick again|Start]]]]</tw-passagedata><tw-passagedata pid="11" name="Strength" tags="" position="600,700" size="100,100">You are:
-
-&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="42" name="Strength Upright Spread" tags="" position="1575,1075" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
   &lt;div&gt;
-    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Strength.avif&#39; width=&#39;200&#39;&gt;
+    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Strength.avif&#39; width=&#39;200&#39; alt=&quot;Strength Upright&quot;&gt;
   &lt;/div&gt;
   &lt;div&gt;
     &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;Strength&lt;/h4&gt;
-    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Courage, patience, soft power. Taming the wild beast with gentleness rather than brute force.&lt;/p&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Courage, persuasion, influence, compassion. Master raw emotion through patience and gentle power.&lt;/p&gt;
   &lt;/div&gt;
-&lt;/div&gt;
-
-(align:&quot;=&gt;&lt;=&quot;)[(text-size:0.9)[[[Pick again|Start]]]]</tw-passagedata><tw-passagedata pid="12" name="The Hermit" tags="" position="800,700" size="100,100">You are:
-
-&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="43" name="Strength Reversed Spread" tags="" position="1575,1200" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
   &lt;div&gt;
-    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Hermit.avif&#39; width=&#39;200&#39;&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Strength.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;Strength Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;Strength (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Self-doubt, weakness, insecurity. Reconnect with your inner resilience and stop letting self-limiting beliefs rule.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="44" name="The Hermit Upright Spread" tags="" position="1725,1075" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Hermit.avif&#39; width=&#39;200&#39; alt=&quot;The Hermit Upright&quot;&gt;
   &lt;/div&gt;
   &lt;div&gt;
     &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Hermit&lt;/h4&gt;
-    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Solitude, introspection, inner guidance. Step back from the world to light your own way.&lt;/p&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Soul-searching, introspection, solitude, inner guidance. Step back from the world to light your own path.&lt;/p&gt;
   &lt;/div&gt;
-&lt;/div&gt;
-
-(align:&quot;=&gt;&lt;=&quot;)[(text-size:0.9)[[[Pick again|Start]]]]</tw-passagedata><tw-passagedata pid="13" name="The Hanged Man" tags="" position="200,900" size="100,100">You are:
-
-&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="45" name="Wheel of Fortune Upright Spread" tags="" position="1875,1075" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
   &lt;div&gt;
-    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Hanged-Man.avif&#39; width=&#39;200&#39;&gt;
-  &lt;/div&gt;
-  &lt;div&gt;
-    &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Hanged Man&lt;/h4&gt;
-    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Pause, surrender, new perspective. Let go of control to see the world upside down.&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-(align:&quot;=&gt;&lt;=&quot;)[(text-size:0.9)[[[Pick again|Start]]]]</tw-passagedata><tw-passagedata pid="14" name="The Devil" tags="" position="800,900" size="100,100">You are:
-
-&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
-  &lt;div&gt;
-    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Devil.avif&#39; width=&#39;200&#39;&gt;
-  &lt;/div&gt;
-  &lt;div&gt;
-    &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Devil&lt;/h4&gt;
-    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Shadow self, attachment, illusion. Chains of addiction or material dependencies—often self-imposed.&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-(align:&quot;=&gt;&lt;=&quot;)[(text-size:0.9)[[[Pick again|Start]]]]</tw-passagedata><tw-passagedata pid="15" name="Credits" tags="" position="900,200" size="100,100">(align:&quot;=&gt;&lt;=&quot;)[(text-size:2)[Credits]
-
-(text-size:0.9)[//Story &amp; Design//]
-Lolomo
-
-(text-size:0.9)[//Card Artwork//]
-&lt;a href=&quot;https://pixabay.com&quot; target=&quot;_blank&quot; style=&quot;color: inherit;&quot;&gt;Pixabay&lt;/a&gt;
-&lt;a href=&quot;https://magnific.com&quot; target=&quot;_blank&quot; style=&quot;color: inherit;&quot;&gt;Magnific&lt;/a&gt;
-
-(text-size:0.9)[//Built With//]
-Twine (Harlowe Story Format)
-Hosted on GitHub Pages
-
-(text-size:0.9)[//Special Thanks//]
-Me. I&#39;m so proud of myself.
-
-
-[(text-size:0.8)[[Back|Home]]]]</tw-passagedata><tw-passagedata pid="16" name="Wheel of Fortune" tags="" position="1000,700" size="100,100">You are:
-
-&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
-  &lt;div&gt;
-    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Wheel-of-Fortune.avif&#39; width=&#39;200&#39;&gt;
+    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Wheel-of-Fortune.avif&#39; width=&#39;200&#39; alt=&quot;Wheel of Fortune Upright&quot;&gt;
   &lt;/div&gt;
   &lt;div&gt;
     &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;Wheel of Fortune&lt;/h4&gt;
-    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Cycles, karma, turns of fate. What goes up must come down; change is the only constant.&lt;/p&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Good luck, karma, life cycles, destiny. Embrace change and adapt to the inevitable shifts of fate.&lt;/p&gt;
   &lt;/div&gt;
-&lt;/div&gt;
-
-(align:&quot;=&gt;&lt;=&quot;)[(text-size:0.9)[[[Pick again|Start]]]]</tw-passagedata><tw-passagedata pid="17" name="Justice" tags="" position="1200,700" size="100,100">You are:
-
-&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="46" name="Wheel of Fortune Reversed Spread" tags="" position="1875,1200" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
   &lt;div&gt;
-    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Justice.avif&#39; width=&#39;200&#39;&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Wheel-of-Fortune.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;Wheel of Fortune Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;Wheel of Fortune (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Bad luck, resistance to change, setbacks. Focus on what you can control while riding out the storm.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="47" name="The Hermit Reversed Spread" tags="" position="1725,1200" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Hermit.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The Hermit Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Hermit (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Loneliness, isolation, withdrawal from reality. It is time to step back into the world and reconnect.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="48" name="Justice Upright Spread" tags="" position="2025,1075" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Justice.avif&#39; width=&#39;200&#39; alt=&quot;Justice Upright&quot;&gt;
   &lt;/div&gt;
   &lt;div&gt;
     &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;Justice&lt;/h4&gt;
-    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Fairness, truth, cause and effect. Weighing decisions clearly; facing consequences.&lt;/p&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Fairness, truth, law, cause and effect. Stand accountable for your choices and weigh decisions objectively.&lt;/p&gt;
   &lt;/div&gt;
-&lt;/div&gt;
-
-(align:&quot;=&gt;&lt;=&quot;)[(text-size:0.9)[[[Pick again|Start]]]]</tw-passagedata><tw-passagedata pid="18" name="Death" tags="" position="400,900" size="100,100">You are:
-
-&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="49" name="Justice Reversed Spread" tags="" position="2025,1200" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
   &lt;div&gt;
-    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Death.avif&#39; width=&#39;200&#39;&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Justice.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;Justice Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;Justice (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Unfairness, lack of accountability, dishonesty. Own your part in a situation or prepare to face the truth.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="50" name="The Hanged Man Upright Spread" tags="" position="1275,1350" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Hanged-Man.avif&#39; width=&#39;200&#39; alt=&quot;The Hanged Man Upright&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Hanged Man&lt;/h4&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Surrender, letting go, new perspective. Pause your actions to gain a completely altered worldview.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="51" name="The Hanged Man Reversed Spread" tags="" position="1275,1475" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Hanged-Man.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The Hanged Man Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Hanged Man (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Stagnation, stalling, unnecessary sacrifice. Holding on to something long past its usefulness.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="52" name="Death Reversed Spread" tags="" position="1425,1475" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Death.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;Death Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;Death (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Resistance to change, fear of letting go, holding on. Dragging out inevitable transitions only creates hardship.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="53" name="Death Upright Spread" tags="" position="1425,1350" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Death.avif&#39; width=&#39;200&#39; alt=&quot;Death Upright&quot;&gt;
   &lt;/div&gt;
   &lt;div&gt;
     &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;Death&lt;/h4&gt;
-    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Endings, transformation, transition. Clearing out the old so the new can emerge.&lt;/p&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Endings, transformation, transition. Release the past to make necessary space for rebirth.&lt;/p&gt;
   &lt;/div&gt;
-&lt;/div&gt;
-
-(align:&quot;=&gt;&lt;=&quot;)[(text-size:0.9)[[[Pick again|Start]]]]</tw-passagedata><tw-passagedata pid="19" name="Temperance" tags="" position="600,900" size="100,100">You are:
-
-&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="54" name="Temperance Upright Spread" tags="" position="1575,1350" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
   &lt;div&gt;
-    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Temperance.avif&#39; width=&#39;200&#39;&gt;
+    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Temperance.avif&#39; width=&#39;200&#39; alt=&quot;Temperance Upright&quot;&gt;
   &lt;/div&gt;
   &lt;div&gt;
     &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;Temperance&lt;/h4&gt;
-    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Balance, moderation, alchemy. Blending extremes to create harmony and long-term stability.&lt;/p&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Balance, moderation, patience, purpose. Synthesize extremes to find inner tranquility and harmony.&lt;/p&gt;
   &lt;/div&gt;
-&lt;/div&gt;
-
-(align:&quot;=&gt;&lt;=&quot;)[(text-size:0.9)[[[Pick again|Start]]]]</tw-passagedata><tw-passagedata pid="20" name="The Tower" tags="" position="1000,900" size="100,100">You are:
-
-&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="55" name="Temperance Reversed Spread" tags="" position="1575,1475" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
   &lt;div&gt;
-    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Tower.avif&#39; width=&#39;200&#39;&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Temperance.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;Temperance Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;Temperance (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Imbalance, excess, lack of long-term vision. Restore moderation before burnout or friction occurs.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="56" name="The Devil Upright Spread" tags="" position="1725,1350" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Devil.avif&#39; width=&#39;200&#39; alt=&quot;The Devil Upright&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Devil&lt;/h4&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Shadow self, attachment, restriction, addiction. Recognize self-imposed chains and take back your freedom.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="57" name="The Devil Reversed Spread" tags="" position="1725,1475" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Devil.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The Devil Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Devil (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Freedom, releasing limiting beliefs, independence. Breaking free from unhealthy toxic patterns or addictions.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="58" name="The Tower Upright Spread" tags="" position="1875,1350" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Tower.avif&#39; width=&#39;200&#39; alt=&quot;The Tower Upright&quot;&gt;
   &lt;/div&gt;
   &lt;div&gt;
     &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Tower&lt;/h4&gt;
-    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Sudden upheaval, revelation, foundation collapse. False structures fall to make way for truth.&lt;/p&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Sudden change, upheaval, awakening, revelation. False structures collapse so real foundations can be built.&lt;/p&gt;
   &lt;/div&gt;
-&lt;/div&gt;
-
-(align:&quot;=&gt;&lt;=&quot;)[(text-size:0.9)[[[Pick again|Start]]]]</tw-passagedata><tw-passagedata pid="21" name="The Star" tags="" position="1200,900" size="100,100">You are:
-
-&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="59" name="The Star Upright Spread" tags="" position="2025,1350" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
   &lt;div&gt;
-    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Star.avif&#39; width=&#39;200&#39;&gt;
+    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Star.avif&#39; width=&#39;200&#39; alt=&quot;The Star Upright&quot;&gt;
   &lt;/div&gt;
   &lt;div&gt;
     &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Star&lt;/h4&gt;
-    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Hope, renewal, inspiration. Calm after the storm; a guiding light in dark times.&lt;/p&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Hope, faith, renewal, inspiration. Peace and serenity return to guide you forward after a storm.&lt;/p&gt;
   &lt;/div&gt;
-&lt;/div&gt;
-
-(align:&quot;=&gt;&lt;=&quot;)[(text-size:0.9)[[[Pick again|Start]]]]</tw-passagedata><tw-passagedata pid="22" name="The Moon" tags="" position="400,1100" size="100,100">You are:
-
-&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="60" name="The Tower Reversed Spread" tags="" position="1875,1475" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
   &lt;div&gt;
-    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Moon.avif&#39; width=&#39;200&#39;&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Tower.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The Tower Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Tower (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Averting disaster, delaying breakdown, fear of suffering. Trying to prevent inevitable structural changes.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="61" name="The Star Reversed Spread" tags="" position="2025,1475" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Star.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The Star Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Star (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Lack of faith, despair, discouragement. Reconnect with hope and give yourself room to heal spiritually.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="62" name="The Moon Upright Spread" tags="" position="1425,1625" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Moon.avif&#39; width=&#39;200&#39; alt=&quot;The Moon Upright&quot;&gt;
   &lt;/div&gt;
   &lt;div&gt;
     &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Moon&lt;/h4&gt;
-    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Illusion, fear, subconscious depths. Things are not as they seem; navigate confusion carefully.&lt;/p&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Illusion, fear, anxiety, subconscious. Face the shadows to uncover clarity buried beneath confusion.&lt;/p&gt;
   &lt;/div&gt;
-&lt;/div&gt;
-
-(align:&quot;=&gt;&lt;=&quot;)[(text-size:0.9)[[[Pick again|Start]]]]</tw-passagedata><tw-passagedata pid="23" name="The Sun" tags="" position="600,1100" size="100,100">You are:
-
-&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="63" name="The Sun Upright Spread" tags="" position="1575,1625" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
   &lt;div&gt;
-    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Sun.avif&#39; width=&#39;200&#39;&gt;
+    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Sun.avif&#39; width=&#39;200&#39; alt=&quot;The Sun Upright&quot;&gt;
   &lt;/div&gt;
   &lt;div&gt;
     &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Sun&lt;/h4&gt;
-    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Joy, clarity, success. Warmth, vitality, and absolute transparency.&lt;/p&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Positivity, fun, warmth, success, vitality. Bask in radiant confidence, truth, and joyful energy.&lt;/p&gt;
   &lt;/div&gt;
-&lt;/div&gt;
-
-(align:&quot;=&gt;&lt;=&quot;)[(text-size:0.9)[[[Pick again|Start]]]]</tw-passagedata><tw-passagedata pid="24" name="Judgement" tags="" position="800,1100" size="100,100">You are:
-
-&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="64" name="The Sun Reversed Spread" tags="" position="1575,1750" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
   &lt;div&gt;
-    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Judgement.avif&#39; width=&#39;200&#39;&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Sun.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The Sun Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Sun (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Temporary depression, inner child needs attention, dimmed optimism. Joy is present but slightly clouded.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="65" name="The Moon Reversed Spread" tags="" position="1425,1750" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Moon.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The Moon Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The Moon (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Release of fear, unveiling truth, overcoming anxiety. Confusion lifts to reveal the reality beneath.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="66" name="Judgement Upright Spread" tags="" position="1725,1625" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Judgement.avif&#39; width=&#39;200&#39; alt=&quot;Judgement Upright&quot;&gt;
   &lt;/div&gt;
   &lt;div&gt;
     &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;Judgement&lt;/h4&gt;
-    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Rebirth, inner calling, evaluation. Hearing the call to wake up and step into a higher state of being.&lt;/p&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Rebirth, inner calling, absolution, evaluation. Rise above past errors and embrace a higher purpose.&lt;/p&gt;
   &lt;/div&gt;
-&lt;/div&gt;
-
-(align:&quot;=&gt;&lt;=&quot;)[(text-size:0.9)[[[Pick again|Start]]]]</tw-passagedata><tw-passagedata pid="25" name="The World" tags="" position="1000,1100" size="100,100">You are:
-
-&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="67" name="Judgement Reversed Spread" tags="" position="1725,1750" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
   &lt;div&gt;
-    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-World.avif&#39; width=&#39;200&#39;&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Judgement.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;Judgement Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;Judgement (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Self-doubt, harsh self-criticism, ignoring a call. Stop second-guessing your worth and move forward.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="68" name="The World Upright Spread" tags="" position="1875,1625" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src =&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-World.avif&#39; width=&#39;200&#39; alt=&quot;The World Upright&quot;&gt;
   &lt;/div&gt;
   &lt;div&gt;
     &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The World&lt;/h4&gt;
-    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Completion, wholeness, fulfillment. The end of one journey and the seamless transition to the next.&lt;/p&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Completion, integration, accomplishment, travel. A major cycle comes to a successful and whole conclusion.&lt;/p&gt;
   &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="69" name="The World Reversed Spread" tags="" position="1875,1750" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-World.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The World Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0 0 3px 0; font-size: 1.8rem;&quot;&gt;The World (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;font-size: 1.3rem; line-height: 1.4;&quot;&gt;Incompletion, lack of closure, shortcuts. Tie up loose ends before starting on your next big chapter.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="70" name="Draw Card" tags="" position="550,600" size="100,100">{
+  (set: $currentCard to (either: &quot;The Fool&quot;, &quot;The Magician&quot;, &quot;The High Priestess&quot;, &quot;The Empress&quot;, &quot;The Emperor&quot;, &quot;The Hierophant&quot;, &quot;The Lovers&quot;, &quot;The Chariot&quot;, &quot;Strength&quot;, &quot;The Hermit&quot;, &quot;Wheel of Fortune&quot;, &quot;Justice&quot;, &quot;The Hanged Man&quot;, &quot;Death&quot;, &quot;Temperance&quot;, &quot;The Devil&quot;, &quot;The Tower&quot;, &quot;The Star&quot;, &quot;The Moon&quot;, &quot;The Sun&quot;, &quot;Judgement&quot;, &quot;The World&quot;))
+  (set: $isReversed to (either: true, false))
+  (if: $isReversed)[
+    (set: $cardPassage to $currentCard + &quot; Reversed&quot;)
+  ](else:)[
+    (set: $cardPassage to $currentCard + &quot; Upright&quot;)
+  ]
+}
+(text-size:0.9)[&lt;div class=&quot;card-wrapper&quot;&gt;
+  &lt;div class=&quot;card-header&quot;&gt;You are:&lt;/div&gt;]
+  
+  (display: $cardPassage)
+&lt;/div&gt;
+---
+(align:&quot;=&gt;&lt;=&quot;)[(text-size:0.8)[[[Return to Main Menu|Home]]]]</tw-passagedata><tw-passagedata pid="71" name="3-Card Spread" tags="" position="1650,600" size="100,100">{
+  (set: $draw to (shuffled: 
+    &quot;The Fool&quot;, &quot;The Magician&quot;, &quot;The High Priestess&quot;, &quot;The Empress&quot;, &quot;The Emperor&quot;, 
+    &quot;The Hierophant&quot;, &quot;The Lovers&quot;, &quot;The Chariot&quot;, &quot;Strength&quot;, &quot;The Hermit&quot;, 
+    &quot;Wheel of Fortune&quot;, &quot;Justice&quot;, &quot;The Hanged Man&quot;, &quot;Death&quot;, &quot;Temperance&quot;, 
+    &quot;The Devil&quot;, &quot;The Tower&quot;, &quot;The Star&quot;, &quot;The Moon&quot;, &quot;The Sun&quot;, &quot;Judgement&quot;, &quot;The World&quot;
+  ))
+  
+  (set: $passage1 to $draw&#39;s 1st + (either: &quot; Upright Spread&quot;, &quot; Reversed Spread&quot;))
+  (set: $passage2 to $draw&#39;s 2nd + (either: &quot; Upright Spread&quot;, &quot; Reversed Spread&quot;))
+  (set: $passage3 to $draw&#39;s 3rd + (either: &quot; Upright Spread&quot;, &quot; Reversed Spread&quot;))
+}
+&lt;div class=&quot;card-wrapper&quot;&gt;
+  
+  &lt;h3 style=&quot;margin-bottom: 5px;&quot;&gt;I. The Past&lt;/h3&gt;
+  (display: $passage1)
+
+  &lt;hr style=&quot;opacity: 0.3; margin: 25px 0;&quot;&gt;
+
+  &lt;h3 style=&quot;margin-bottom: 5px;&quot;&gt;II. The Present&lt;/h3&gt;
+  (display: $passage2)
+
+  &lt;hr style=&quot;opacity: 0.3; margin: 25px 0;&quot;&gt;
+
+  &lt;h3 style=&quot;margin-bottom: 5px;&quot;&gt;III. The Future&lt;/h3&gt;
+  (display: $passage3)
+
 &lt;/div&gt;
 
-(align:&quot;=&gt;&lt;=&quot;)[(text-size:0.9)[[[Pick again|Start]]]]</tw-passagedata></tw-storydata>
+---
+(align:&quot;=&gt;&lt;=&quot;)[(text-size:0.8)[[[Draw Again|3-Card Spread]] | [[Return to Main Menu|Home]]]]</tw-passagedata><tw-passagedata pid="72" name="The Fool Reversed" tags="" position="175,925" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Fool.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The Fool Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The Fool (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Recklessness, risk-taking, hesitation, folly.&lt;br&gt;Description: Represents taking uncalculated risks or, conversely, letting fear hold you back from a necessary start. Reversed, it warns against carelessness, impulsivity, or naive choices.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="73" name="The Magician Reversed" tags="" position="325,925" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Magician.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The Magician Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The Magician (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Manipulation, unused talent, illusion, poor planning.&lt;br&gt;Description: Signals blocked creative energy or misdirected focus. Reversed, it highlights potential self-doubt, trickery, or failing to channel your real talents effectively.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="74" name="The High Priestess Reversed" tags="" position="475,925" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-High-Priestess.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The High Priestess Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The High Priestess (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Ignored intuition, secrets, superficiality, internal disconnect.&lt;br&gt;Description: Points to tuning out your inner voice in favor of external noise. Reversed, she urges you to stop ignoring gut feelings and address hidden feelings or secrets.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="75" name="The Emperor Reversed" tags="" position="775,925" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Emperor.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The Emperor Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The Emperor (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Tyranny, rigidity, lack of discipline, power struggles.&lt;br&gt;Description: Indicates abuse of authority or a complete breakdown of structure. Reversed, he points to over-controlling tendencies or a need to reclaim self-discipline.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="76" name="The Empress Reversed" tags="" position="625,925" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Empress.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The Empress Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The Empress (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Creative block, dependence, neglect, depletion.&lt;br&gt;Description: Reflects a loss of personal growth or feeling emotionally drained. Reversed, she reminds you to prioritize self-care and restore your creative or nurturing reserves.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="77" name="The Hierophant Reversed" tags="" position="925,925" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Hierophant.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The Hierophant Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The Hierophant (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Rebellion, non-conformity, new approaches, outdated beliefs.&lt;br&gt;Description: Questions rigid dogmas and traditional institutions. Reversed, it encourages forging your own spiritual path and breaking free from restrictive expectations.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="78" name="The Lovers Reversed" tags="" position="175,1200" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Lovers.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The Lovers Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The Lovers (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Disharmony, misalignment, bad choices, detachment.&lt;br&gt;Description: Signals internal or interpersonal conflict and mismatched values. Reversed, it warns against compromising your integrity or avoiding tough relationship decisions.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="79" name="The Chariot Reversed" tags="" position="325,1200" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Chariot.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The Chariot Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The Chariot (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Loss of control, lack of direction, aggression, feeling stalled.&lt;br&gt;Description: Represents forces pulling in opposing directions without guidance. Reversed, it advises regrouping, releasing forcefulness, and recalibrating your strategy.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="80" name="The Hermit Reversed" tags="" position="625,1200" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Hermit.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The Hermit Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The Hermit (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Loneliness, isolation, paranoia, avoiding self-reflection.&lt;br&gt;Description: Indicates either unhealthy withdrawal from society or fear of facing yourself. Reversed, it warns against isolating too deeply or refusing quiet contemplation.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="81" name="Strength Reversed" tags="" position="475,1200" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Strength.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;Strength Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;Strength (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Self-doubt, insecurity, raw impulse, feeling drained.&lt;br&gt;Description: Points to a temporary lapse in confidence or emotional control. Reversed, it calls for gentle self-compassion to rebuild your inner courage from within.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="82" name="Wheel of Fortune Reversed" tags="" position="775,1200" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Wheel-of-Fortune.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;Wheel of Fortune Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;Wheel of Fortune (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Setbacks, bad luck, resistance to change, disruption.&lt;br&gt;Description: Signals an unexpected downswing or struggle against natural cycles. Reversed, it reminds you that setbacks are temporary and control lies in your reaction.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="83" name="Justice Reversed" tags="" position="925,1200" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Justice.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;Justice Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;Justice (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Unfairness, dishonesty, bias, avoiding responsibility.&lt;br&gt;Description: Highlights a refusal to take accountability or an unfair situation. Reversed, it calls for complete honesty with yourself and fixing past missteps.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="84" name="The Hanged Man Reversed" tags="" position="175,1475" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Hanged-Man.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The Hanged Man Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The Hanged Man (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Stagnation, stalling, resistance, martyrdom.&lt;br&gt;Description: Reflects holding onto useless control or delaying necessary action. Reversed, it cautions against dragging out sacrifices without gaining enlightenment.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="85" name="Death Reversed" tags="" position="325,1475" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Death.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;Death Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;Death (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Resistance to change, fear of letting go, lingering past.&lt;br&gt;Description: Points to clinging tightly to outdated circumstances. Reversed, it urges you to surrender what no longer serves you so true transformation can begin.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="86" name="Temperance Reversed" tags="" position="475,1475" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Temperance.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;Temperance Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;Temperance (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Imbalance, excess, impatience, discord.&lt;br&gt;Description: Indicates swing between extremes or rushing outcomes. Reversed, it advises restoring middle ground, practicing patience, and recalibrating life elements.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="87" name="The Devil Reversed" tags="" position="625,1475" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Devil.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The Devil Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The Devil (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Breaking chains, liberation, overcoming addiction, independence.&lt;br&gt;Description: Represents severing toxic ties and reclaiming autonomy. Reversed, it heralds a powerful moment of breaking free from limiting habits or fear.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="88" name="The Tower Reversed" tags="" position="775,1475" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Tower.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The Tower Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The Tower (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Averted disaster, delaying the inevitable, internal upheaval.&lt;br&gt;Description: Points to avoiding external shock while managing internal shifts. Reversed, it cautions against delaying needed changes to suppress natural evolution.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="89" name="The Star Reversed" tags="" position="925,1475" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Star.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The Star Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The Star (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Hopelessness, cynicism, despair, feeling disconnected.&lt;br&gt;Description: Reflects temporary loss of faith and spiritual burnout. Reversed, it asks you to reconnect with quiet hope and rebuild inner belief gradually.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="90" name="The Moon Reversed" tags="" position="325,1750" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Moon.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The Moon Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The Moon (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Clearing confusion, exposed truth, overcoming anxiety.&lt;br&gt;Description: Signals mist dissipating to reveal reality clearly. Reversed, it brings relief from deep anxiety, dispelling rumors, and revealing facts.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="91" name="Judgement Reversed" tags="" position="625,1750" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/Judgement.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;Judgement Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;Judgement (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Self-doubt, harsh judgment, missed calling, regret.&lt;br&gt;Description: Indicates getting stuck in past guilt or ignoring a deep personal calling. Reversed, it advises releasing harsh self-criticism and learning from past choices.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="92" name="The Sun Reversed" tags="" position="475,1750" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-Sun.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The Sun Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The Sun (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Clouded optimism, minor delays, sadness, blocked joy.&lt;br&gt;Description: Represents warmth obscured by temporary clouds rather than total darkness. Reversed, it encourages keeping positive focus despite small speedbumps.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="93" name="The World Reversed" tags="" position="775,1750" size="100,100">&lt;div style=&quot;display: flex; align-items: center; gap: 20px;&quot;&gt;
+  &lt;div&gt;
+    &lt;img src=&#39;https://raw.githubusercontent.com/lolo-mo/tarot/refs/heads/main/images/The-World.avif&#39; style=&quot;transform: rotate(180deg);&quot; width=&#39;200&#39; alt=&quot;The World Reversed&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;h4 style=&quot;margin: 0; font-size: 1.8rem;&quot;&gt;The World (Reversed)&lt;/h4&gt;
+    &lt;p style=&quot;margin-top: 5px; font-size: 1.3rem; line-height: 1.4;&quot;&gt;
+      Themes: Incomplete goals, lack of closure, shortcuts, feeling stuck.&lt;br&gt;Description: Signals sitting near the finish line without tied loose ends. Reversed, it encourages pushing through final steps to reach genuine completion.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
 var require,define;!function(){var e={},r={};require=function(i){var n=e[i];return n&&(r[i]=n[1].apply(void 0,n[0].map(require)),e[i]=void 0),r[i]},(define=function(r,i,n){if("function"==typeof r)return r();e[r]=[i,n]}).amd=!0}();/*!
  * https://github.com/paulmillr/es6-shim
