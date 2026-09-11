@@ -608,6 +608,14 @@ tw-link:hover {
   animation: pulse 1.2s infinite ease-in-out;
 }
 
+#horoscope-date {
+  margin: -4px 0 10px 0;
+  font-size: 0.8rem;
+  color: #d1c4e9;
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
 @keyframes pulse {
   0% { opacity: 0.4; }
   50% { opacity: 0.8; }
@@ -665,7 +673,7 @@ window.fetchDailyHoroscope = async function(sign) {
   textContainer.textContent = "Consulting the heavens for today's reading...";
 
   try {
-    const url = `https://sigastra.com/api/v1/daily?lang=en&sign=${encodeURIComponent(cleanSign)}`;
+    const url = `https://sigastra.com/api/v1/daily?lang=en&sign=${encodeURIComponent(cleanSign)}&full=1`;
 
     const response = await fetch(url, {
       method: 'GET',
@@ -791,8 +799,8 @@ window.fetchDailyHoroscope = async function(sign) {
     letter-spacing: 1.5px;
     text-transform: uppercase;
     font-size: 0.8em;
-    margin-top: 14px; /* Reduced gap before new sections */
-    margin-bottom: 2px; /* Tightened space above the value */
+    margin-top: 14px;
+    margin-bottom: 2px;
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
   }
 
@@ -833,12 +841,15 @@ window.fetchDailyHoroscope = async function(sign) {
 (align:&quot;=&gt;&lt;=&quot;)[(text-size:2)[&lt;span class=&quot;credits-title&quot;&gt;Credits&lt;/span&gt;]
 
 &lt;span class=&quot;credits-label&quot;&gt;Story &amp; Design&lt;/span&gt;&lt;span class=&quot;credits-body&quot;&gt;Lolomo&lt;/span&gt;
-&lt;span class=&quot;credits-label&quot;&gt;Card Artwork&lt;/span&gt;&lt;span class=&quot;credits-body&quot;&gt;&lt;a href=&quot;https://pixabay.com&quot; target=&quot;_blank&quot;&gt;Pixabay&lt;/a&gt; &amp;bull; &lt;a href=&quot;https://magnific.com&quot; target=&quot;_blank&quot;&gt;Magnific&lt;/a&gt;&lt;/span&gt;
+&lt;span class=&quot;credits-label&quot;&gt;Card Artwork&lt;/span&gt;&lt;span class=&quot;credits-body&quot;&gt;&lt;a href=&quot;https://pixabay.com&quot; target=&quot;_blank&quot;&gt;Pixabay&lt;/a&gt; &amp;bull; &lt;a href=&quot;https://magnific.com&quot; target=&quot;_blank&quot;&gt;Designed by Magnific&lt;/a&gt;&lt;/span&gt;
+&lt;span class=&quot;credits-label&quot;&gt;Daily Horoscope&lt;/span&gt;&lt;span class=&quot;credits-body&quot;&gt;&lt;a href=&quot;https://sigastra.com&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Powered by Sigastra&lt;/a&gt;&lt;/span&gt;
 &lt;span class=&quot;credits-label&quot;&gt;Engine &amp; Hosting&lt;/span&gt;&lt;span class=&quot;credits-body&quot;&gt;Twine (Harlowe) &amp;bull; GitHub Pages&lt;/span&gt;
 &lt;span class=&quot;credits-label&quot;&gt;Special Thanks&lt;/span&gt;&lt;span class=&quot;credits-body&quot;&gt;Me — I&#39;m so proud of myself.&lt;/span&gt;
 
 ---
-(text-size:0.85)[&lt;span style=&quot;display:inline-block; margin-top: 5px;&quot;&gt;[[Back|Home]]&lt;/span&gt;]]</tw-passagedata><tw-passagedata pid="4" name="The Fool Upright" tags="" position="175,800" size="100,100">&lt;div class=&quot;card-layout&quot;&gt;
+(text-size:0.85)[&lt;span style=&quot;display:inline-block; margin-top: 5px;&quot;&gt;[[Back|Home]]&lt;/span&gt;]]
+```
+</tw-passagedata><tw-passagedata pid="4" name="The Fool Upright" tags="" position="175,800" size="100,100">&lt;div class=&quot;card-layout&quot;&gt;
   &lt;div class=&quot;card-flip-container&quot; onclick=&quot;this.classList.toggle(&#39;flipped&#39;)&quot;&gt;
     &lt;div class=&quot;card-flipper&quot;&gt;
       &lt;div class=&quot;card-face-back&quot;&gt;
@@ -987,7 +998,7 @@ window.fetchDailyHoroscope = async function(sign) {
     &lt;div class=&quot;arcana-body&quot;&gt;
       &lt;div class=&quot;arcana-section&quot;&gt;&lt;span class=&quot;arcana-label&quot;&gt;Archetype:&lt;/span&gt; The Warrior / The Victor&lt;/div&gt;
       &lt;div class=&quot;arcana-section&quot;&gt;&lt;span class=&quot;arcana-label&quot;&gt;Core:&lt;/span&gt; Determined momentum, focus, overriding opposition, mastery.&lt;/div&gt;
-      &lt;div class=&quot;arcana-section&quot;&gt;&lt;span class=&quot;arcana-label&quot;&gt;Interpretation:&lt;/span&gt; The Chariot symbolizes triumph through sheer force of will and self-discipline. Upright, it shows that you are driving through conflicting priorities or chaotic circumstances. By maintaining total control over internal doubts and opposing external pressures, you are guaranteed to reach your destination successfully.&lt;/div&gt;
+      &lt;div class=&quot;arcana-section&quot;&gt;&lt;span class=&quot;arcana-label&quot;&gt;Interpretation:&lt;/span&gt; The Chariot symbolizes triumph through sheer force of will and self-discipline. Upright, it shows that you are driving through conflicting priorities or chaotic circumstances. By maintaining total control over internal doubts and opposing external pressures, you are well positioned to reach your destination successfully.&lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="12" name="Strength Upright" tags="" position="475,1075" size="100,100">&lt;div class=&quot;card-layout&quot;&gt;
@@ -1082,7 +1093,7 @@ window.fetchDailyHoroscope = async function(sign) {
     &lt;div class=&quot;arcana-body&quot;&gt;
       &lt;div class=&quot;arcana-section&quot;&gt;&lt;span class=&quot;arcana-label&quot;&gt;Archetype:&lt;/span&gt; The Martyred Prophet / The Awakened Observer&lt;/div&gt;
       &lt;div class=&quot;arcana-section&quot;&gt;&lt;span class=&quot;arcana-label&quot;&gt;Core:&lt;/span&gt; Voluntary surrender, pause, reframing perspective, enlightenment.&lt;/div&gt;
-      &lt;div class=&quot;arcana-section&quot;&gt;&lt;span class=&quot;arcana-label&quot;&gt;Interpretation:&lt;/span&gt; Suspended upside down by choice, The Hanged Man finds wisdom through stillness. Upright, it signals that pushing forward aggressively will only cause frustration. By willingly surrendering control and stepping back, you unlock an entirely new, enlightened perspective that resolves the issue effortless.&lt;/div&gt;
+      &lt;div class=&quot;arcana-section&quot;&gt;&lt;span class=&quot;arcana-label&quot;&gt;Interpretation:&lt;/span&gt; Suspended upside down by choice, The Hanged Man finds wisdom through stillness. Upright, it signals that pushing forward aggressively will only cause frustration. By willingly surrendering control and stepping back, you unlock an entirely new, enlightened perspective that resolves the issue effortlessly.&lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="17" name="Death Upright" tags="" position="325,1350" size="100,100">&lt;div class=&quot;card-layout&quot;&gt;
@@ -1120,7 +1131,7 @@ window.fetchDailyHoroscope = async function(sign) {
     &lt;div class=&quot;arcana-body&quot;&gt;
       &lt;div class=&quot;arcana-section&quot;&gt;&lt;span class=&quot;arcana-label&quot;&gt;Archetype:&lt;/span&gt; The Alchemist of Peace / The Mediator&lt;/div&gt;
       &lt;div class=&quot;arcana-section&quot;&gt;&lt;span class=&quot;arcana-label&quot;&gt;Core:&lt;/span&gt; Middle path, moderation, harmonious integration, patience.&lt;/div&gt;
-      &lt;div class=&quot;arcana-section&quot;&gt;&lt;span class=&quot;arcana-label&quot;&gt;Interpretation:&lt;/span&gt; Temperance depicts an angel pouring fluid between two cups, creating an optimal balance. Upright, it calls for extreme composure, synthesis of opposing views, and avoidance of radical extremes. Healing and resolution come through patience, calm adaptation, and finding a sustainable middle ground.&lt;/div&gt;
+      &lt;div class=&quot;arcana-section&quot;&gt;&lt;span class=&quot;arcana-label&quot;&gt;Interpretation:&lt;/span&gt; Temperance depicts an angel pouring fluid between two cups, creating an optimal balance. Healing and resolution come through patience, calm adaptation, and finding a sustainable middle ground.&lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="19" name="The Devil Upright" tags="" position="625,1350" size="100,100">&lt;div class=&quot;card-layout&quot;&gt;
@@ -1139,7 +1150,7 @@ window.fetchDailyHoroscope = async function(sign) {
     &lt;div class=&quot;arcana-body&quot;&gt;
       &lt;div class=&quot;arcana-section&quot;&gt;&lt;span class=&quot;arcana-label&quot;&gt;Archetype:&lt;/span&gt; The Shadow / The Captive&lt;/div&gt;
       &lt;div class=&quot;arcana-section&quot;&gt;&lt;span class=&quot;arcana-label&quot;&gt;Core:&lt;/span&gt; Material obsession, self-imposed bondage, shadow integration, unhealthy attachment.&lt;/div&gt;
-      &lt;div class=&quot;arcana-section&quot;&gt;&lt;span class=&quot;arcana-label&quot;&gt;Interpretation:&lt;/span&gt; The Devil illuminates the chains, addictions, or toxic beliefs that keep you trapped in dynamic cycles. Upright, it highlights where you have ceded your power to material comforts, toxic habits, or fearful thinking. Crucially, it reminds you that the chains around your neck are loose—freedom is always an option if you face your shadow.&lt;/div&gt;
+      &lt;div class=&quot;arcana-section&quot;&gt;&lt;span class=&quot;arcana-label&quot;&gt;Interpretation:&lt;/span&gt; The Devil illuminates the chains, addictions, or toxic beliefs that keep you trapped in destructive cycles. Upright, it highlights where you have ceded your power to material comforts, toxic habits, or fearful thinking. Crucially, it reminds you that the chains around your neck are loose—freedom is always an option if you face your shadow.&lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="20" name="The Tower Upright" tags="" position="775,1350" size="100,100">&lt;div class=&quot;card-layout&quot;&gt;
@@ -1196,7 +1207,7 @@ window.fetchDailyHoroscope = async function(sign) {
     &lt;div class=&quot;arcana-body&quot;&gt;
       &lt;div class=&quot;arcana-section&quot;&gt;&lt;span class=&quot;arcana-label&quot;&gt;Archetype:&lt;/span&gt; The Illusionist / The Subconscious Shadow&lt;/div&gt;
       &lt;div class=&quot;arcana-section&quot;&gt;&lt;span class=&quot;arcana-label&quot;&gt;Core:&lt;/span&gt; Unconscious fears, ambiguity, intuition through uncertainty, illusion.&lt;/div&gt;
-      &lt;div class=&quot;arcana-section&quot;&gt;&lt;span class=&quot;arcana-label&quot;&gt;Interpretation:&lt;/span&gt; The Moon casts a dim, romantic, yet disorienting light over unfamiliar terrain. Upright, it signals that things are not as they appear on the surface. Projection, old anxieties, and self-deception may be distorting your view; you must navigate this period by listening to deep instincts rather than accepting surface-level claims.&lt;/div&gt;
+      &lt;div class=&quot;arcana-section&quot;&gt;&lt;span class=&quot;arcana-label&quot;&gt;Interpretation:&lt;/span&gt; The Moon casts a dim, romantic, yet disorienting light over unfamiliar terrain. Upright, it signals that things are not as they appear on the surface. Projection, old anxieties, and self-deception may be distorting your perception; you must navigate this period by listening to deep instincts rather than accepting surface-level claims.&lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="23" name="The Sun Upright" tags="" position="475,1625" size="100,100">&lt;div class=&quot;card-layout&quot;&gt;
@@ -1215,7 +1226,7 @@ window.fetchDailyHoroscope = async function(sign) {
     &lt;div class=&quot;arcana-body&quot;&gt;
       &lt;div class=&quot;arcana-section&quot;&gt;&lt;span class=&quot;arcana-label&quot;&gt;Archetype:&lt;/span&gt; The Divine Child / The Radiant Light&lt;/div&gt;
       &lt;div class=&quot;arcana-section&quot;&gt;&lt;span class=&quot;arcana-label&quot;&gt;Core:&lt;/span&gt; Unadulterated joy, vital success, transparency, absolute clarity.&lt;/div&gt;
-      &lt;div class=&quot;arcana-section&quot;&gt;&lt;span class=&quot;arcana-label&quot;&gt;Interpretation:&lt;/span&gt; The Sun represents the highest frequency of positive energy in the tarot deck. Upright, it illuminates everything with warmth, truth, and warmth. Expect success, high vitality, transparent relationships, and uninhibited confidence as your inner identity aligns seamlessly with external realities.&lt;/div&gt;
+      &lt;div class=&quot;arcana-section&quot;&gt;&lt;span class=&quot;arcana-label&quot;&gt;Interpretation:&lt;/span&gt; The Sun represents the highest frequency of positive energy in the tarot deck. Upright, it illuminates everything with warmth, truth, and clarity. Expect success, high vitality, transparent relationships, and uninhibited confidence as your inner identity aligns seamlessly with external realities.&lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="24" name="Judgement Upright" tags="" position="625,1625" size="100,100">&lt;div class=&quot;card-layout&quot;&gt;
@@ -1253,7 +1264,7 @@ window.fetchDailyHoroscope = async function(sign) {
     &lt;div class=&quot;arcana-body&quot;&gt;
       &lt;div class=&quot;arcana-section&quot;&gt;&lt;span class=&quot;arcana-label&quot;&gt;Archetype:&lt;/span&gt; The Whole Being / The Cosmic Dancer&lt;/div&gt;
       &lt;div class=&quot;arcana-section&quot;&gt;&lt;span class=&quot;arcana-label&quot;&gt;Core:&lt;/span&gt; Complete integration, successful closure, global belonging, fulfillment.&lt;/div&gt;
-      &lt;div class=&quot;arcana-section&quot;&gt;&lt;span class=&quot;arcana-label&quot;&gt;Interpretation:&lt;/span&gt; As the culmination of the Fool&#39;s Journey, The World represents total harmony and completion. Upright, it signals that a major life chapter has been successfully integrated and brought to its natural, triumphant finish. You step forward into the world complete, whole, and ready to embark on a elevated loop of evolution.&lt;/div&gt;
+      &lt;div class=&quot;arcana-section&quot;&gt;&lt;span class=&quot;arcana-label&quot;&gt;Interpretation:&lt;/span&gt; As the culmination of the Fool&#39;s Journey, The World represents total harmony and completion. Upright, it signals that a major life chapter has been successfully integrated and brought to its natural, triumphant finish. You step forward into the world complete, whole, and ready to embark on a new, elevated cycle of evolution.&lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="26" name="The Fool Upright Spread" tags="" position="1275,800" size="100,100">&lt;div class=&quot;tarot-card-content&quot;&gt;
